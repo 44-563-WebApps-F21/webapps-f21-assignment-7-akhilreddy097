@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stack value page</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            background-color: rgb(240, 102, 10);
+        }
+
+        .flex-container>div {
+            background-color: #5234ff;
+            margin: 10px;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+                background-color: rgb(29, 243, 172);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Akhil Kumar Reddy Mulamalla builds a stack</h2>
+    <input id="inputElement" type="text"><br><br>
+    <div class="flex-container" id="target">
+        <div class="stack">row 1</div>
+        <div class="stack">row 2</div>
+        <div class="stack">row 3</div>
+    </div><br>
+    <h4>Press the button to push element</h4>
+    <button onclick="makeNewDiv()">Push value</button>
+    <button onclick="popItem()">Pop</button>
+    <button onclick="zap()">Zap</button>
+    <button onclick="unique()">Unique</button>
+</body>
+<script>
+    function makeNewDiv() {
+        let element = document.createElement("div")
+        let input = document.getElementById("inputElement")
+        element.innerHTML = input.value
+        element.className = "stack"
+        document.getElementById('target').appendChild(element)
+    }
+    function popItem() {
+        var sitems = document.getElementsByClassName("stack")
+        var slength = sitems.length
+        if (slength > 0)
+            sitems[slength - 1].remove()
+    }
+    function zap() {
+        var sitems = document.getElementsByClassName("stack")
+        let input = document.getElementById("inputElement").value
+        if (sitems != undefined && sitems.length > 0) {
+            for (let i = 0; i < sitems.length; i++) {
+                if (sitems[i].innerHTML == input) {
+                    var itemToBeRemoved = sitems[i].innerHTML
+                    sitems[i].remove()
+                    console.log(itemToBeRemoved)
+                    i--
+                }
+            }
+        }   
+    }
+    function unique(){
+
+let stackItems = document.getElementsByClassName('stack');
+    for (let i = stackItems.length-1; i >=0; i--) {
+        let stackItem = stackItems[i].innerHTML;
+        for (let j = i-1; j >= 0; j--) {
+            if (stackItem == stackItems[j].innerHTML) {
+                stackItems[j].remove();								
+            }
+
+       }
+        
+    }
+
+}
+
+</script>
+
+</html>
